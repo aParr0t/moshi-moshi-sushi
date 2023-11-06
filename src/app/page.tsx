@@ -28,7 +28,7 @@ export default function Home() {
       </nav>
       <div className="max-w-[1000px]">
         {/* Hero */}
-        <section className="flex flex-row min-h-[80vh] w-full flex-1">
+        <section id="hero" className="flex flex-row min-h-[80vh] w-full flex-1">
           <div className="w-full flex flex-col items-start gap-4 my-auto translate-y-10 px-10 ml-auto">
             <h1 className="text-5xl font-serif font-light">
               Opplev Smaken av Fantastisk Sushi
@@ -43,7 +43,10 @@ export default function Home() {
           </div>
         </section>
         {/* Menu */}
-        <section className="w-full px-[70px] pb-[50px] flex-col justify-start items-start inline-flex">
+        <section
+          id="menu"
+          className="w-full px-[70px] pb-[50px] flex-col justify-start items-start inline-flex"
+        >
           <h2 className="self-stretch text-center text-foreground text-3xl font-bold font-['Cormorant Garamond']">
             Menu
           </h2>
@@ -98,7 +101,10 @@ export default function Home() {
           </div>
         </section>
         {/* About us */}
-        <section className="w-full px-[72px] py-[68px] justify-center items-start gap-[65px] inline-flex">
+        <section
+          id="about"
+          className="w-full px-[72px] py-[68px] justify-center items-start gap-[65px] inline-flex"
+        >
           <Image
             src="/static/images/kitchen.png"
             alt="Om oss"
@@ -121,7 +127,10 @@ export default function Home() {
           </div>
         </section>
         {/* Working hours */}
-        <section className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex">
+        <section
+          id="working-hours"
+          className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex"
+        >
           <h2 className="text-foreground text-3xl font-bold font-serif">
             Åpningstider
           </h2>
@@ -138,7 +147,10 @@ export default function Home() {
           </div>
         </section>
         {/* Location */}
-        <section className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex">
+        <section
+          id="location"
+          className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex"
+        >
           <h2 className="text-foreground text-3xl font-bold font-serif">
             Hvor du finner oss
           </h2>
@@ -207,10 +219,18 @@ export default function Home() {
                   Tjenester
                 </p>
                 <ul className="flex-col justify-start items-start gap-2 flex">
-                  <li>Meny</li>
-                  <li>Åpningstider</li>
-                  <li>Om oss</li>
-                  <li>Besøksadresse</li>
+                  <li>
+                    <a href="#menu">Meny</a>
+                  </li>
+                  <li>
+                    <a href="#working-hours">Åpningstider</a>
+                  </li>
+                  <li>
+                    <a href="#about">Om oss</a>
+                  </li>
+                  <li>
+                    <a href="#location">Besøksadresse</a>
+                  </li>
                 </ul>
               </div>
             </div>
