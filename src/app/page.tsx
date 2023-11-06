@@ -120,6 +120,23 @@ export default function Home() {
             </div>
           </div>
         </section>
+        {/* Working hours */}
+        <section className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex">
+          <h2 className="text-foreground text-3xl font-bold font-serif">
+            Åpningstider
+          </h2>
+          <div className="text-center text-foreground text-base font-normal font-sans">
+            <ul>
+              <li>Mandag 13:00-20:15</li>
+              <li>Tirsdag 13:00-20:15</li>
+              <li>Onsdag Stengt</li>
+              <li>Torsdag 13:00-20:15</li>
+              <li>Fredag 13:00-20:15</li>
+              <li>Lørdag 13:00-20:15</li>
+              <li>Søndag 13:00-20:15</li>
+            </ul>
+          </div>
+        </section>
       </div>
     </main>
   );
