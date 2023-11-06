@@ -44,7 +44,7 @@ export default function Home() {
         </section>
         {/* Menu */}
         <section className="w-full px-[70px] pb-[50px] flex-col justify-start items-start inline-flex">
-          <h2 className="self-stretch text-center text-stone-950 text-3xl font-bold font-['Cormorant Garamond']">
+          <h2 className="self-stretch text-center text-foreground text-3xl font-bold font-['Cormorant Garamond']">
             Menu
           </h2>
           <div className="self-stretch pt-4 justify-center items-center gap-[30px] inline-flex">
@@ -106,7 +106,7 @@ export default function Home() {
             width={377}
             height={331}
           />
-          <div className="flex-col justify-start items-start gap-[15px] inline-flex">
+          <div className="flex-col justify-start items-start gap-4 inline-flex">
             <div className="text-foreground text-3xl font-bold font-serif">
               Om oss
             </div>
@@ -151,6 +151,74 @@ export default function Home() {
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1997.4512231496426!2d11.04652587674458!3d59.95783836055433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46417c9f8522ad41%3A0x2541f13ccfdcdd89!2sMoshiMoshi%20Sushi!5e0!3m2!1sen!2sno!4v1696621580428!5m2!1sen!2sno"
           ></iframe>
         </section>
+        {/* Footer */}
+        <footer className="w-full h-[352px] px-[70px] pt-16 pb-6 flex-col justify-center items-center gap-10 inline-flex">
+          <div className="self-stretch justify-start items-start gap-[70px] inline-flex">
+            <div className="grow shrink basis-0 justify-between items-start flex">
+              <div className="flex-col justify-start items-start gap-4 inline-flex">
+                <Image
+                  width={172}
+                  height={121}
+                  src="/static/images/logo.svg"
+                  alt="logo"
+                />
+                <div className="w-[204px] text-foreground text-base font-normal font-sans">
+                  Ditt beste valg for autentisk sushi i Lillestrøm
+                </div>
+              </div>
+              <div className="flex-col justify-start items-start gap-[30px] inline-flex">
+                <div className="flex-col justify-start items-start gap-2 flex">
+                  <div className="text-foreground text-lg font-bold font-sans">
+                    Besøksadresse
+                  </div>
+                  <div className="text-foreground text-base font-normal font-sans">
+                    Parkalleen 4b
+                    <br />
+                    2000 Lillestrøm
+                  </div>
+                </div>
+                <div className="flex-col justify-start items-start gap-2 flex">
+                  <div className="text-foreground text-lg font-bold font-sans">
+                    Kontakt oss
+                  </div>
+                  <div className="text-foreground text-base font-normal font-sans">
+                    post@moshimoshi.no
+                    <br />
+                    Tlf: +47 21 39 56 75
+                  </div>
+                </div>
+              </div>
+              <div className="flex-col justify-start items-start gap-2 inline-flex">
+                <p className="text-foreground text-lg font-bold font-sans">
+                  Åpningstider
+                </p>
+                <ul className="text-foreground text-base font-normal font-sans">
+                  <li>Mandag 13:00-20:15</li>
+                  <li>Tirsdag 13:00-20:15</li>
+                  <li>Onsdag Stengt</li>
+                  <li>Torsdag 13:00-20:15</li>
+                  <li>Fredag 13:00-20:15</li>
+                  <li>Lørdag 13:00-20:15</li>
+                  <li>Søndag 13:00-20:15</li>
+                </ul>
+              </div>
+              <div className="flex-col justify-start items-start gap-2 inline-flex">
+                <p className="text-foreground text-lg font-bold font-sans">
+                  Tjenester
+                </p>
+                <ul className="flex-col justify-start items-start gap-2 flex">
+                  <li>Meny</li>
+                  <li>Åpningstider</li>
+                  <li>Om oss</li>
+                  <li>Besøksadresse</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div className="text-foreground text-base font-normal font-sans">
+            Nettsiden er utviklet av Revene
+          </div>
+        </footer>
       </div>
     </main>
   );
