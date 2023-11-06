@@ -137,6 +137,20 @@ export default function Home() {
             </ul>
           </div>
         </section>
+        {/* Location */}
+        <section className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex">
+          <h2 className="text-foreground text-3xl font-bold font-serif">
+            Hvor du finner oss
+          </h2>
+          <iframe
+            width="100%"
+            height="400px"
+            loading="lazy"
+            allowFullScreen
+            referrerPolicy="no-referrer-when-downgrade"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1997.4512231496426!2d11.04652587674458!3d59.95783836055433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46417c9f8522ad41%3A0x2541f13ccfdcdd89!2sMoshiMoshi%20Sushi!5e0!3m2!1sen!2sno!4v1696621580428!5m2!1sen!2sno"
+          ></iframe>
+        </section>
       </div>
     </main>
   );
