@@ -174,15 +174,15 @@ export default function Home() {
                   src="/static/images/logo.svg"
                   alt="logo"
                 />
-                <div className="w-[204px] text-foreground text-base font-normal font-sans">
+                <p className="w-[204px] text-foreground text-base font-normal font-sans">
                   Ditt beste valg for autentisk sushi i Lillestrøm
-                </div>
+                </p>
               </div>
               <div className="flex-col justify-start items-start gap-[30px] inline-flex">
                 <div className="flex-col justify-start items-start gap-2 flex">
-                  <div className="text-foreground text-lg font-bold font-sans">
+                  <p className="text-foreground text-lg font-bold font-sans">
                     Besøksadresse
-                  </div>
+                  </p>
                   <div className="text-foreground text-base font-normal font-sans">
                     Parkalleen 4b
                     <br />
@@ -190,9 +190,9 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-col justify-start items-start gap-2 flex">
-                  <div className="text-foreground text-lg font-bold font-sans">
+                  <p className="text-foreground text-lg font-bold font-sans">
                     Kontakt oss
-                  </div>
+                  </p>
                   <div className="text-foreground text-base font-normal font-sans">
                     post@moshimoshi.no
                     <br />
@@ -235,9 +235,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="text-foreground text-base font-normal font-sans">
+          <p className="text-foreground text-base font-normal font-sans">
             Nettsiden er utviklet av Revene
-          </div>
+          </p>
         </footer>
       </div>
     </main>
