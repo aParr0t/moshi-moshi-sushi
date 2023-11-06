@@ -20,13 +20,13 @@ export default function Home() {
           <h1 className="text-5xl font-serif font-light">
             Opplev Smaken av Fantastisk Sushi
           </h1>
-          <p className="text-lg font-sans">
+          <p className="text-lg font-sans ">
             Sushi som tar deg med på en smaksreise til Japan.
           </p>
           <Button>Bestill</Button>
         </div>
         <div className="w-full text-center relative">
-          <span className="absolute top-[50%] left-[50%]">floating hand</span>
+          <span className="absolute top-[50%]">floating hand</span>
         </div>
       </section>
     </main>
