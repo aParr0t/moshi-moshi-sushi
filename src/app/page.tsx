@@ -1,10 +1,13 @@
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import React from "react";
+
+import { Button } from "@/components/ui/button";
+import HandModel from "@/components/hand";
 
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center max-w-[1500px] mx-auto relative">
-      <nav className="flex flex-row gap-4 justify-between items-center w-full px-10 py-2 sticky top-0 left-0 z-50 bg-background">
+      <nav className="flex flex-row gap-4 justify-between items-center w-full px-10 py-2 fixed top-0 left-0 z-50 backdrop-blur-sm bg-background/70">
         <Image
           src="/static/images/logo.svg"
           alt="logo"
@@ -28,18 +31,25 @@ export default function Home() {
       </nav>
       <div className="max-w-[1000px]">
         {/* Hero */}
-        <section id="hero" className="flex flex-row min-h-[80vh] w-full flex-1">
-          <div className="w-full flex flex-col items-start gap-4 my-auto translate-y-10 px-10 ml-auto">
+        <section
+          id="hero"
+          className="flex flex-row place-items-start min-h-[90vh] w-full relative"
+        >
+          <div
+            className="w-full flex flex-col items-start gap-4 my-auto
+          translate-y-10 p-6 ml-auto z-20 mr-[50%] bg-background/70 pointer-events-none backdrop-blur-sm rounded-lg"
+          >
             <h1 className="text-5xl font-serif font-light">
               Opplev Smaken av Fantastisk Sushi
             </h1>
-            <p className="text-lg font-sans ">
+            <p className="text-lg font-sans">
               Sushi som tar deg med på en smaksreise til Japan.
             </p>
-            <Button>Bestill</Button>
+            <Button className="pointer-events-auto">Bestill</Button>
           </div>
-          <div className="w-full text-center relative">
-            <span className="absolute top-[50%]">floating hand</span>
+          <div className="left-[-100px] h-full absolute text-center right-[-100px]">
+            <HandModel />
+            <div className="absolute h-full right-0 top-0 bg-gradient-to-r from-transparent to-background w-[50px]"></div>
           </div>
         </section>
         {/* Menu */}
@@ -79,20 +89,20 @@ export default function Home() {
                         width={189}
                         height={186}
                       />
-                      <div className="text-foreground text-base font-bold font-sans">
+                      <p className="text-foreground text-base font-bold font-sans">
                         Sushi maki
-                      </div>
+                      </p>
                       <div className="justify-start items-center inline-flex">
-                        <div className="text-foreground text-base font-bold font-sans">
+                        <span className="text-foreground text-base font-bold font-sans">
                           89
-                        </div>
-                        <div className="text-foreground text-base font-bold font-sans">
+                        </span>
+                        <span className="text-foreground text-base font-bold font-sans">
                           kr
-                        </div>
+                        </span>
                       </div>
-                      <div className="self-stretch text-foreground text-base font-normal font-sans">
+                      <p className="self-stretch text-foreground text-base font-normal font-sans">
                         3 laks, 1 tunfisk, 1 surimi, 1 scrampi + 4 laks maki
-                      </div>
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -113,17 +123,17 @@ export default function Home() {
             height={331}
           />
           <div className="flex-col justify-start items-start gap-4 inline-flex">
-            <div className="text-foreground text-3xl font-bold font-serif">
+            <p className="text-foreground text-3xl font-bold font-serif">
               Om oss
-            </div>
-            <div className="self-stretch text-foreground text-opacity-90 text-base font-normal font-sans">
+            </p>
+            <p className="self-stretch text-foreground text-opacity-90 text-base font-normal font-sans">
               Velkommen til Moshi Moshi Sushi i hjertet av Lillestrøm! Vi er
               stolte av å presentere vår lidenskap for sushi gjennom hver deilig
               bit vi serverer. Våre dyktige kokker deler en dyp kjærlighet for
               sitt håndverk, og det gjenspeiles i hvert rull eller nigiri de
               lager. Vårt mål er å tilby den beste sushi-opplevelsen i
               Lillestrøm, og vi ser frem til å servere deg sushi.
-            </div>
+            </p>
           </div>
         </section>
         {/* Working hours */}
