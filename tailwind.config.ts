@@ -19,6 +19,9 @@ module.exports = {
       },
     },
     extend: {
+      boxShadow: {
+        button: "5px 5px 0 0 rgba(0, 0, 2, 0.8)",
+      },
       fontFamily: {
         sans: ['"Proza Libre"', ...defaultTheme.fontFamily.sans],
         serif: ['"Cormorant Garamond"', ...defaultTheme.fontFamily.serif],
