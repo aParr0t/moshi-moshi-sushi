@@ -54,18 +54,17 @@ function renderScene(scene) {
   return meshes;
 }
 
+const damping = new Vector3(0.8, 0.5, 0);
+const restPosition = new Vector3(1.6, -0.4, 3);
+const mouseOffset = new Vector3(1.3, 0, 3);
 function Hand({ shouldFollow }: { shouldFollow: boolean }) {
   const gltf = useGLTF("/static/models/hand and chopsticks.glb");
   const ref = useRef<THREE.Group>(null);
-
-  const damping = new Vector3(0.8, 0.5, 0);
-  const restPosition = new Vector3(1.6, -0.4, 3);
 
   useFrame((state) => {
     if (!ref.current) return;
 
     if (shouldFollow) {
-      const mouseOffset = new Vector3(1.3, 0, 3);
       const mouse = new Vector3(state.pointer.x, state.pointer.y, 0);
       const followOffset = new Vector3().copy(mouse).multiply(damping);
       const newPosition = new Vector3().copy(mouseOffset).add(followOffset);
