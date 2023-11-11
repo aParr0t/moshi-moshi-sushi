@@ -1,10 +1,10 @@
 "use client";
 
 import * as THREE from "three";
+import { Vector3 } from "three";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
-import { CameraControls, useGLTF } from "@react-three/drei";
-import { PerspectiveCamera } from "@react-three/drei";
+import { useRef, useState } from "react";
+import { PerspectiveCamera, useGLTF } from "@react-three/drei";
 
 const cameraConfig = {
   fov: 75,
@@ -13,19 +13,22 @@ const cameraConfig = {
   position: [0, 0, 5] as [number, number, number],
 };
 
-console.log(new THREE.PerspectiveCamera());
-
 export default function Scene() {
   const cameraRef = useRef<THREE.PerspectiveCamera>(null);
-  const canvasRef = useRef(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [isMouseInside, setIsMouseInside] = useState(false);
 
   return (
-    <Canvas className="" ref={canvasRef}>
+    <Canvas
+      className=""
+      ref={canvasRef}
+      onMouseEnter={() => setIsMouseInside(true)}
+      onMouseLeave={() => setIsMouseInside(false)}
+    >
       <PerspectiveCamera {...cameraConfig} ref={cameraRef} />
       <ambientLight />
-      <pointLight position={[10, 10, 10]} />
-      <Hand />
-      {/* <CameraControls /> */}
+      <directionalLight position={[0, 0, 5]} intensity={1} />
+      <Hand shouldFollow={isMouseInside} />
     </Canvas>
   );
 }
@@ -38,7 +41,6 @@ function renderScene(scene) {
     const child = scene.children[i];
     if (child.type === "Group") {
       meshes.push(<group key={i}>{renderScene(child)}</group>);
-      console.log("group");
     } else if (
       child.type === "Mesh" ||
       child.type === "SkinnedMesh" ||
@@ -52,43 +54,29 @@ function renderScene(scene) {
   return meshes;
 }
 
-function Hand(props) {
+function Hand({ shouldFollow }: { shouldFollow: boolean }) {
   const gltf = useGLTF("/static/models/hand and chopsticks.glb");
-  const [position, setPosition] = useState<[number, number, number]>([0, 0, 0]);
-  const [test, setTest] = useState(0);
-  const offset = [1.3, 0];
+  const ref = useRef<THREE.Group>(null);
+
+  const damping = new Vector3(0.8, 0.5, 0);
+  const restPosition = new Vector3(1.6, -0.4, 3);
 
   useFrame((state) => {
-    const damping = [0.8, 0.5];
-    setPosition([
-      state.pointer.x * damping[0] + offset[0],
-      state.pointer.y * damping[1] + offset[1],
-      3,
-    ]);
+    if (!ref.current) return;
+
+    if (shouldFollow) {
+      const mouseOffset = new Vector3(1.3, 0, 3);
+      const mouse = new Vector3(state.pointer.x, state.pointer.y, 0);
+      const followOffset = new Vector3().copy(mouse).multiply(damping);
+      const newPosition = new Vector3().copy(mouseOffset).add(followOffset);
+      ref.current.position.lerp(newPosition, 0.1);
+    } else {
+      ref.current.position.lerp(restPosition, 0.1);
+    }
   });
 
-  useEffect(() => {
-    console.log(gltf);
-    function keyListener(e) {
-      if (e.key === "d") {
-        setTest((test) => test + 0.05);
-      } else if (e.key === "a") {
-        setTest((test) => test - 0.05);
-      }
-    }
-
-    window.addEventListener("keydown", keyListener);
-    return () => {
-      window.removeEventListener("keydown", keyListener);
-    };
-  }, []);
-
   return (
-    <group
-      scale={[0.1, 0.1, 0.1]}
-      rotation={[0, Math.PI, 0]}
-      position={position}
-    >
+    <group scale={[0.1, 0.1, 0.1]} rotation={[0, Math.PI, 0]} ref={ref}>
       {renderScene(gltf.scene)}
     </group>
   );

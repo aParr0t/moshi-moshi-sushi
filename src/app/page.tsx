@@ -11,8 +11,8 @@ export default function Home() {
         <Image
           src="/static/images/logo.svg"
           alt="logo"
-          height={71}
-          width={101}
+          height={80}
+          width={80}
         />
         <ul className="flex flex-row gap-4 items-center">
           <li>
