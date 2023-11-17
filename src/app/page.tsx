@@ -4,10 +4,12 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import HandModel from "@/components/hand";
 import Menu from "@/components/menu";
-import { getPages } from "@/lib/directus";
+import { getPages, getWorkingHours } from "@/lib/directus";
+import WorkingHours from "@/components/working-hours";
 
 export default async function Home() {
   const pages = await getPages();
+  const workingHours = await getWorkingHours();
 
   return (
     <main className="flex min-h-screen flex-col items-center max-w-[1500px] mx-auto relative">
@@ -93,17 +95,7 @@ export default async function Home() {
           <h2 className="text-foreground text-3xl font-bold font-serif">
             Åpningstider
           </h2>
-          <div className="text-center text-foreground text-base font-normal font-sans">
-            <ul>
-              <li>Mandag 13:00-20:15</li>
-              <li>Tirsdag 13:00-20:15</li>
-              <li>Onsdag Stengt</li>
-              <li>Torsdag 13:00-20:15</li>
-              <li>Fredag 13:00-20:15</li>
-              <li>Lørdag 13:00-20:15</li>
-              <li>Søndag 13:00-20:15</li>
-            </ul>
-          </div>
+          <WorkingHours className="text-center" workingHours={workingHours} />
         </section>
         {/* Location */}
         <section
@@ -163,15 +155,7 @@ export default async function Home() {
                 <p className="text-foreground text-lg font-bold font-sans">
                   Åpningstider
                 </p>
-                <ul className="text-foreground text-base font-normal font-sans">
-                  <li>Mandag 13:00-20:15</li>
-                  <li>Tirsdag 13:00-20:15</li>
-                  <li>Onsdag Stengt</li>
-                  <li>Torsdag 13:00-20:15</li>
-                  <li>Fredag 13:00-20:15</li>
-                  <li>Lørdag 13:00-20:15</li>
-                  <li>Søndag 13:00-20:15</li>
-                </ul>
+                <WorkingHours workingHours={workingHours} />
               </div>
               <div className="flex-col justify-start items-start gap-2 inline-flex">
                 <p className="text-foreground text-lg font-bold font-sans">
