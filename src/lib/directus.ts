@@ -49,3 +49,18 @@ export async function getPages() {
 
   return fetchedPages.map(menuPageReducer);
 }
+
+export async function getWorkingHours() {
+  const fetchedWorkingHours = await directus.request(
+    readItems("Aapningstider", {
+      fields: ["Dag", "Start", "Slutt", "Stengt"],
+    })
+  );
+
+  return fetchedWorkingHours.map((workingHour) => ({
+    day: workingHour.Dag,
+    open: workingHour.Start,
+    close: workingHour.Slutt,
+    isClosed: workingHour.Stengt,
+  }));
+}
