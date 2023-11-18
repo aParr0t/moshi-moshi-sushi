@@ -7,9 +7,12 @@ services:
     volumes:
       - ./directus/data/database:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: "${POSTGRES_USER}"
-      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
+      POSTGRES_USER: /run/secrets/postgres_user
       POSTGRES_DB: "${POSTGRES_DB}"
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_user
+      - postgres_password
 
   directus:
     image: directus/directus:10.7.2
@@ -21,19 +24,39 @@ services:
     depends_on:
       - database
     environment:
-      KEY: "${DIRECTUS_KEY}"
-      SECRET: "${DIRECTUS_SECRET}"
+      KEY_FILE: /run/secrets/directus_key
+      SECRET_FILE: /run/secrets/directus_secret
 
-      ADMIN_EMAIL: "${DIRECTUS_ADMIN_EMAIL}"
-      ADMIN_PASSWORD: "${DIRECTUS_ADMIN_PASSWORD}"
+      ADMIN_EMAIL_FILE: /run/secrets/directus_admin_email
+      ADMIN_PASSWORD_FILE: /run/secrets/directus_admin_password
 
       DB_CLIENT: "pg"
       DB_HOST: "database"
       DB_PORT: "${POSTGRES_PORT}"
       DB_DATABASE: "${POSTGRES_DB}"
-      DB_USER: "${POSTGRES_USER}"
-      DB_PASSWORD: "${POSTGRES_PASSWORD}"
+      DB_USER_FILE: /run/secrets/postgres_user
+      DB_PASSWORD_FILE: /run/secrets/postgres_password
+    secrets:
+      - postgres_user
+      - postgres_password
+      - directus_key
+      - directus_secret
+      - directus_admin_email
+      - directus_admin_password
 
-      # DB_CLIENT: "sqlite3"
-      # DB_FILENAME: "./directus/database/data.db"
       # PUBLIC_URL: 'https://directus.example.com'
+
+secrets:
+  postgres_user:
+    file: ./docker_secrets/postgres_user.txt
+  postgres_password:
+    file: ./docker_secrets/postgres_password.txt
+
+  directus_key:
+    file: ./docker_secrets/directus_key.txt
+  directus_secret:
+    file: ./docker_secrets/directus_secret.txt
+  directus_admin_email:
+    file: ./docker_secrets/directus_admin_email.txt
+  directus_admin_password:
+    file: ./docker_secrets/directus_admin_password.txt
