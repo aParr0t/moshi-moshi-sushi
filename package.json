@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@directus/sdk": "^13.0.2",
     "@radix-ui/react-slot": "^1.0.2",
     "@react-three/drei": "^9.88.11",
     "@react-three/fiber": "^8.15.10",

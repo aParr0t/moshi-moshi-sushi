@@ -1,10 +1,16 @@
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import HandModel from "@/components/hand";
+import Menu from "@/components/menu";
+import { getPages, getWorkingHours } from "@/lib/directus";
+import WorkingHours from "@/components/working-hours";
 
-export default function Home() {
+export default async function Home() {
+  const pages = await getPages();
+  const workingHours = await getWorkingHours();
+
   return (
     <main className="flex min-h-screen flex-col items-center max-w-[1500px] mx-auto relative">
       <nav className="flex flex-row gap-4 justify-between items-center w-full px-10 py-2 fixed top-0 left-0 z-50 backdrop-blur-sm bg-background/70">
@@ -53,63 +59,8 @@ export default function Home() {
           </div>
         </section>
         {/* Menu */}
-        <section
-          id="menu"
-          className="w-full px-[70px] pb-[50px] flex-col justify-start items-start inline-flex"
-        >
-          <h2 className="self-stretch text-center text-foreground text-3xl font-bold font-['Cormorant Garamond']">
-            Menu
-          </h2>
-          <div className="self-stretch pt-4 justify-center items-center gap-[30px] inline-flex">
-            {["Maki", "Nigiri", "Sashimi", "Småretter", "Mix meny"].map(
-              (item) => (
-                <Button variant={"outline"} key={item}>
-                  {item}
-                </Button>
-              )
-            )}
-          </div>
-          <div className="self-stretch pt-[15px] flex-col justify-start items-start gap-[30px] flex">
-            {["Makimono", "Futomaki & spesial maki"].map((item, index) => (
-              <div
-                key={index}
-                className="self-stretch flex-col justify-start items-start gap-2.5 flex"
-              >
-                <h3 className="text-2xl font-bold">{item}</h3>
-                <div className="overflow-x-scroll self-stretch justify-start items-center gap-[50px] inline-flex">
-                  {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((item, index) => (
-                    <div
-                      key={index}
-                      className="min-w-[200px] p-2.5 rounded-xl border border-foreground flex-col justify-start items-start gap-0.5 flex"
-                    >
-                      <Image
-                        className="self-stretch rounded-xl"
-                        src="https://via.placeholder.com/189x186"
-                        alt="sushi"
-                        width={189}
-                        height={186}
-                      />
-                      <p className="text-foreground text-base font-bold font-sans">
-                        Sushi maki
-                      </p>
-                      <div className="justify-start items-center inline-flex">
-                        <span className="text-foreground text-base font-bold font-sans">
-                          89
-                        </span>
-                        <span className="text-foreground text-base font-bold font-sans">
-                          kr
-                        </span>
-                      </div>
-                      <p className="self-stretch text-foreground text-base font-normal font-sans">
-                        3 laks, 1 tunfisk, 1 surimi, 1 scrampi + 4 laks maki
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        <Menu pages={pages} />
+
         {/* About us */}
         <section
           id="about"
@@ -144,17 +95,7 @@ export default function Home() {
           <h2 className="text-foreground text-3xl font-bold font-serif">
             Åpningstider
           </h2>
-          <div className="text-center text-foreground text-base font-normal font-sans">
-            <ul>
-              <li>Mandag 13:00-20:15</li>
-              <li>Tirsdag 13:00-20:15</li>
-              <li>Onsdag Stengt</li>
-              <li>Torsdag 13:00-20:15</li>
-              <li>Fredag 13:00-20:15</li>
-              <li>Lørdag 13:00-20:15</li>
-              <li>Søndag 13:00-20:15</li>
-            </ul>
-          </div>
+          <WorkingHours className="text-center" workingHours={workingHours} />
         </section>
         {/* Location */}
         <section
@@ -214,15 +155,7 @@ export default function Home() {
                 <p className="text-foreground text-lg font-bold font-sans">
                   Åpningstider
                 </p>
-                <ul className="text-foreground text-base font-normal font-sans">
-                  <li>Mandag 13:00-20:15</li>
-                  <li>Tirsdag 13:00-20:15</li>
-                  <li>Onsdag Stengt</li>
-                  <li>Torsdag 13:00-20:15</li>
-                  <li>Fredag 13:00-20:15</li>
-                  <li>Lørdag 13:00-20:15</li>
-                  <li>Søndag 13:00-20:15</li>
-                </ul>
+                <WorkingHours workingHours={workingHours} />
               </div>
               <div className="flex-col justify-start items-start gap-2 inline-flex">
                 <p className="text-foreground text-lg font-bold font-sans">
