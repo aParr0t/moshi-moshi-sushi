@@ -3,6 +3,9 @@
 # directus
 /directus
 
+# docker
+/docker_secrets
+
 # dependencies
 /node_modules
 /.pnp
