@@ -7,9 +7,6 @@ import { Button } from "@/components/ui/button";
 export default function Menu({ pages }) {
   const [selectedPage, setSelectedPage] = useState(pages[0]);
 
-  console.log(selectedPage.subPages.length);
-
-  const subPageCount = selectedPage.subPages.length;
   return (
     <section
       id="menu"
@@ -36,12 +33,12 @@ export default function Menu({ pages }) {
         })}
       </div>
       <div
-        className={`grid grid-cols-${subPageCount} place-content-center w-full pt-[15px] gap-[30px] mt-8`}
+        className={`flex flex-row flex-1 place-content-center w-full pt-[15px] gap-[30px] mt-8`}
       >
         {selectedPage.subPages.map((page, subPageIdx) => (
           <div
             key={subPageIdx}
-            className="flex flex-col gap-2.5 min-w-[250px]:"
+            className="flex flex-col w-full gap-2.5 min-w-[250px] max-w-[600px]"
           >
             <h3 className="text-2xl font-bold">{page.name}</h3>
             <div className="flex flex-col gap-6">
