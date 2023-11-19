@@ -12,7 +12,7 @@ export default async function Home() {
   const workingHours = await getWorkingHours();
 
   return (
-    <main className="flex min-h-screen flex-col items-center max-w-[1500px] mx-auto relative">
+    <main className="flex min-h-screen flex-col max-w-full md:max-w-[1000px] mx-auto relative overflow-hidden">
       <nav className="flex flex-row gap-4 justify-between items-center w-full px-10 py-2 fixed top-0 left-0 z-50 backdrop-blur-sm bg-background/70">
         <Image
           src="/static/images/logo.svg"
@@ -20,7 +20,8 @@ export default async function Home() {
           height={80}
           width={80}
         />
-        <ul className="flex flex-row gap-4 items-center">
+        <div className="sm:hidden">Burger</div>
+        <ul className="hidden sm:flex flex-row gap-4 items-center">
           <li>
             <a href="#hero">Hjem</a>
           </li>
@@ -35,15 +36,15 @@ export default async function Home() {
           </li>
         </ul>
       </nav>
-      <div className="max-w-[1000px]">
+      <div className="p-10">
         {/* Hero */}
         <section
           id="hero"
-          className="flex flex-row place-items-start min-h-[90vh] w-full relative"
+          className="bg-red-400 flex flex-row place-items-start min-h-[90vh] w-full relative"
         >
           <div
             className="w-full flex flex-col items-start gap-4 my-auto
-          translate-y-10 p-6 ml-auto z-20 mr-[50%] bg-background/70 pointer-events-none backdrop-blur-sm rounded-lg"
+          translate-y-10 p-6 ml-auto z-20 md:mr-[50%] bg-background/70 pointer-events-none backdrop-blur-sm rounded-lg"
           >
             <h1 className="text-5xl font-serif font-light">
               Opplev Smaken av Fantastisk Sushi
@@ -53,7 +54,7 @@ export default async function Home() {
             </p>
             <Button className="pointer-events-auto">Bestill</Button>
           </div>
-          <div className="left-[-100px] h-full absolute text-center right-[-100px]">
+          <div className="left-[-100px] h-full absolute text-center right-[-100px] hidden md:block">
             <HandModel />
             <div className="absolute h-full right-0 top-0 bg-gradient-to-r from-transparent to-background w-[50px]"></div>
           </div>
@@ -100,7 +101,7 @@ export default async function Home() {
         {/* Location */}
         <section
           id="location"
-          className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex"
+          className="w-full lg:px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex"
         >
           <h2 className="text-foreground text-3xl font-bold font-serif">
             Hvor du finner oss
@@ -115,67 +116,65 @@ export default async function Home() {
           ></iframe>
         </section>
         {/* Footer */}
-        <footer className="w-full h-[352px] px-[70px] pt-16 pb-6 flex-col justify-center items-center gap-10 inline-flex">
-          <div className="self-stretch justify-start items-start gap-[70px] inline-flex">
-            <div className="grow shrink basis-0 justify-between items-start flex">
-              <div className="flex-col justify-start items-start gap-4 inline-flex">
-                <Image
-                  width={172}
-                  height={121}
-                  src="/static/images/logo.svg"
-                  alt="logo"
-                />
-                <p className="w-[204px] text-foreground text-base font-normal font-sans">
-                  Ditt beste valg for autentisk sushi i Lillestrøm
+        <footer className="w-full px-5 pt-16 flex-col justify-center items-center gap-10 flex">
+          <div className="flex flex-wrap sm:flex-nowrap flex-row gap-4 items-start justify-around md:justify-between self-stretch grow shrink basis-0">
+            <div className="hidden md:block">
+              <Image
+                width={130}
+                height={130}
+                src="/static/images/logo.svg"
+                alt="logo"
+              />
+              <p className=" text-foreground text-base font-normal font-sans whitespace-pre-line">
+                Ditt beste valg for <br /> autentisk sushi i Lillestrøm
+              </p>
+            </div>
+            <div>
+              <div>
+                <p className="text-foreground text-lg font-bold font-sans">
+                  Besøksadresse
                 </p>
-              </div>
-              <div className="flex-col justify-start items-start gap-[30px] inline-flex">
-                <div className="flex-col justify-start items-start gap-2 flex">
-                  <p className="text-foreground text-lg font-bold font-sans">
-                    Besøksadresse
-                  </p>
-                  <div className="text-foreground text-base font-normal font-sans">
-                    Parkalleen 4b
-                    <br />
-                    2000 Lillestrøm
-                  </div>
-                </div>
-                <div className="flex-col justify-start items-start gap-2 flex">
-                  <p className="text-foreground text-lg font-bold font-sans">
-                    Kontakt oss
-                  </p>
-                  <div className="text-foreground text-base font-normal font-sans">
-                    post@moshimoshi.no
-                    <br />
-                    Tlf: +47 21 39 56 75
-                  </div>
+                <div className="text-foreground text-base font-normal font-sans">
+                  Parkalleen 4b
+                  <br />
+                  2000 Lillestrøm
                 </div>
               </div>
-              <div className="flex-col justify-start items-start gap-2 inline-flex">
+              <div className="mt-4">
                 <p className="text-foreground text-lg font-bold font-sans">
-                  Åpningstider
+                  Kontakt oss
                 </p>
-                <WorkingHours workingHours={workingHours} />
+                <div className="text-foreground text-base font-normal font-sans">
+                  post@moshimoshi.no
+                  <br />
+                  Tlf: +47 21 39 56 75
+                </div>
               </div>
-              <div className="flex-col justify-start items-start gap-2 inline-flex">
-                <p className="text-foreground text-lg font-bold font-sans">
-                  Tjenester
-                </p>
-                <ul className="flex-col justify-start items-start gap-2 flex">
-                  <li>
-                    <a href="#menu">Meny</a>
-                  </li>
-                  <li>
-                    <a href="#working-hours">Åpningstider</a>
-                  </li>
-                  <li>
-                    <a href="#about">Om oss</a>
-                  </li>
-                  <li>
-                    <a href="#location">Besøksadresse</a>
-                  </li>
-                </ul>
-              </div>
+            </div>
+            <div>
+              <p className="text-foreground text-lg font-bold font-sans">
+                Åpningstider
+              </p>
+              <WorkingHours workingHours={workingHours} />
+            </div>
+            <div className="hidden md:block">
+              <p className="text-foreground text-lg font-bold font-sans">
+                Tjenester
+              </p>
+              <ul className="flex flex-col justify-start items-start">
+                <li>
+                  <a href="#menu">Meny</a>
+                </li>
+                <li>
+                  <a href="#working-hours">Åpningstider</a>
+                </li>
+                <li>
+                  <a href="#about">Om oss</a>
+                </li>
+                <li>
+                  <a href="#location">Besøksadresse</a>
+                </li>
+              </ul>
             </div>
           </div>
           <p className="text-foreground text-base font-normal font-sans">
