@@ -12,15 +12,20 @@ export default async function Home() {
   const workingHours = await getWorkingHours();
 
   return (
-    <main className="flex min-h-screen flex-col max-w-full md:max-w-[1000px] mx-auto relative overflow-hidden">
-      <nav className="flex flex-row gap-4 justify-between items-center w-full px-10 py-2 fixed top-0 left-0 z-50 backdrop-blur-sm bg-background/70">
+    // <main className="flex min-h-screen flex-col max-w-full md:max-w-[1000px] mx-auto relative overflow-hidden">
+    <main className="flex min-h-screen flex-col max-w-full md:max-w-[1000px] mx-auto relative">
+      <nav
+        id="nav"
+        className="flex flex-row gap-4 justify-between items-center w-full px-10 py-2 fixed top-0 left-0 z-50 backdrop-blur-sm bg-background/70"
+      >
         <Image
           src="/static/images/logo.svg"
           alt="logo"
           height={80}
           width={80}
+          className="w-[4rem] aspect-auto sm:w-20"
         />
-        <div className="sm:hidden">Burger</div>
+        {/* <div className="sm:hidden">Burger</div> */}
         <ul className="hidden sm:flex flex-row gap-4 items-center">
           <li>
             <a href="#hero">Hjem</a>
@@ -36,11 +41,11 @@ export default async function Home() {
           </li>
         </ul>
       </nav>
-      <div className="p-10">
+      <div className="p-5">
         {/* Hero */}
         <section
           id="hero"
-          className="bg-red-400 flex flex-row place-items-start min-h-[90vh] w-full relative"
+          className="flex flex-row place-items-start min-h-[90vh] w-full relative"
         >
           <div
             className="w-full flex flex-col items-start gap-4 my-auto
@@ -61,16 +66,15 @@ export default async function Home() {
         </section>
         {/* Menu */}
         <Menu pages={pages} />
-
         {/* About us */}
         <section
           id="about"
-          className="w-full px-[72px] py-[68px] justify-center items-start gap-[65px] inline-flex"
+          className="flex flex-col-reverse md:flex-row w-full p-10 justify-center items-start gap-10"
         >
           <Image
             src="/static/images/kitchen.png"
             alt="Om oss"
-            className="rounded-xl"
+            className="rounded-xl mx-auto md:mx-0"
             width={377}
             height={331}
           />
@@ -91,7 +95,7 @@ export default async function Home() {
         {/* Working hours */}
         <section
           id="working-hours"
-          className="w-full px-[72px] pt-5 pb-[50px] flex-col justify-start items-center gap-4 inline-flex"
+          className="flex flex-col justify-start items-center w-full p-10 gap-4"
         >
           <h2 className="text-foreground text-3xl font-bold font-serif">
             Åpningstider
@@ -117,7 +121,7 @@ export default async function Home() {
         </section>
         {/* Footer */}
         <footer className="w-full px-5 pt-16 flex-col justify-center items-center gap-10 flex">
-          <div className="flex flex-wrap sm:flex-nowrap flex-row gap-4 items-start justify-around md:justify-between self-stretch grow shrink basis-0">
+          <div className="flex flex-wrap sm:flex-nowrap flex-row gap-4 items-start sm:justify-around md:justify-between self-stretch grow shrink basis-0">
             <div className="hidden md:block">
               <Image
                 width={130}
