@@ -71,8 +71,12 @@
     @apply border-border;
     box-sizing: border-box;
     scroll-behavior: smooth;
+    /* border: 1px solid red; */
   }
   body {
     @apply bg-background text-foreground;
+  }
+  section {
+    @apply px-5;
   }
 }

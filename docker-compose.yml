@@ -7,15 +7,17 @@ services:
     volumes:
       - ./directus/data/database:/var/lib/postgresql/data
     environment:
-      POSTGRES_USER: /run/secrets/postgres_user
+      POSTGRES_USER_FILE: /run/secrets/postgres_user
       POSTGRES_DB: "${POSTGRES_DB}"
       POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
     secrets:
       - postgres_user
       - postgres_password
+    ports:
+      - "${POSTGRES_PORT}:5432"
 
   directus:
-    image: directus/directus:10.7.2
+    image: directus/directus:10.9.3
     ports:
       - 8055:8055
     volumes:
