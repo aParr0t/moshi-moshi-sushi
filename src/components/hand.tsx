@@ -35,7 +35,7 @@ export default function Scene() {
 
 // this function should take in a group, and render all meshes inside that group.
 // should also work recursively, so that it can render groups inside groups.
-function renderScene(scene) {
+function renderScene(scene: THREE.Group | THREE.Object3D) {
   const meshes = [];
   for (let i = 0; i < scene.children.length; i++) {
     const child = scene.children[i];
@@ -47,6 +47,7 @@ function renderScene(scene) {
       child.type === "Object3D"
     ) {
       meshes.push(
+        // @ts-ignore
         <mesh key={i} geometry={child.geometry} material={child.material} />
       );
     }

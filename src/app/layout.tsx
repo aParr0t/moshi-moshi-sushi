@@ -1,6 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { CartProvider } from "@/context/cart";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +16,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={`${inter.className} bg-background`}>{children}</body>
+    <html lang="en" className="w-full">
+      <body className={`${inter.className} bg-background w-full`}>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

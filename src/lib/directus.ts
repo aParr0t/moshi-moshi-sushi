@@ -1,16 +1,17 @@
 import { readItems, createDirectus, rest } from "@directus/sdk";
 
-const directus = createDirectus("http://localhost:8055").with(rest());
+const baseUrl = process.env.API_URL || "http://localhost:8055";
+const directus = createDirectus(baseUrl).with(rest());
 
 export default directus;
 
-function menuPageReducer(menuPage) {
+function menuPageReducer(menuPage: any) {
   return {
     name: menuPage.Navn,
-    subPages: menuPage.Undersider.map((subPage) => {
+    subPages: menuPage.Undersider.map((subPage: any) => {
       return {
         name: subPage.item.Tittel,
-        dishes: subPage.item.Matretter.map((dish) => {
+        dishes: subPage.item.Matretter.map((dish: any) => {
           return {
             name: dish.Matretter_id.Navn,
             description: dish.Matretter_id.Beskrivelse,

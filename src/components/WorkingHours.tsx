@@ -1,7 +1,17 @@
-export default function WorkingHours({ workingHours, className }) {
+type Props = {
+  workingHours: {
+    day: string;
+    open: string;
+    close: string;
+    isClosed: boolean;
+  }[];
+  className?: string;
+};
+
+export default function WorkingHours({ workingHours, className }: Props) {
   return (
     <ul
-      className={`text-foreground text-base font-normal font-sans ${className}`}
+      className={`text-foreground text-base font-normal font-sans whitespace-nowrap ${className}`}
     >
       {workingHours.map((h) => {
         let content = "";
