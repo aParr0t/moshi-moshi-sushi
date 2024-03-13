@@ -4,11 +4,11 @@ const plugin = require("tailwindcss/plugin");
 
 // radial background code taken from: https://stackoverflow.com/a/77121542/15598055
 const radialGradientPlugin = plugin(
-  function ({ matchUtilities, theme }) {
+  function ({ matchUtilities, theme }: { matchUtilities: any; theme: any }) {
     matchUtilities(
       {
         // map to bg-radient-[*]
-        "bg-radient": (value) => ({
+        "bg-radient": (value: string) => ({
           "background-image": `radial-gradient(${value},var(--tw-gradient-stops))`,
         }),
       },
@@ -40,8 +40,10 @@ function _presets() {
   };
   let result = {};
   for (const shape of shapes)
-    for (const [posName, posValue] of Object.entries(pos))
+    for (const [posName, posValue] of Object.entries(pos)) {
+      // @ts-ignore
       result[`${shape}-${posName}`] = `${shape} at ${posValue}`;
+    }
 
   return result;
 }

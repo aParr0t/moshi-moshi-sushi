@@ -20,7 +20,7 @@ export const CartContext = createContext({
   removeOneFromCart: (itemId: number) => {},
   removeAllFromCart: (itemId: number) => {},
   clearCart: () => {},
-  getCartTotal: () => {},
+  getCartTotal: () => 1 + 1,
 });
 
 export const CartProvider = ({ children }: { children: React.ReactNode }) => {
